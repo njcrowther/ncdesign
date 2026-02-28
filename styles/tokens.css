@@ -1,0 +1,42 @@
+/* =============================================================================
+   NCDesign — Color Tokens
+   Source of truth: https://www.figma.com/design/Cb9UIoyd5e5XnX1hMZhzfW
+   Mirrors the "Color Palette" variable collection in Figma.
+   ============================================================================= */
+
+:root {
+
+  /* ── Brand / Primary ─────────────────────────────────────────────────────── */
+  --color-primary-base:       #1A7A6E; /* hsl(172, 65%, 29%) */
+  --color-primary-light:      #4AD9C6; /* hsl(172, 65%, 57%) */
+  --color-primary-dark:       #061D1A; /* hsl(172, 66%,  7%) */
+
+  /* ── Brand / Secondary ───────────────────────────────────────────────────── */
+  --color-secondary-base:     #0E4D6B; /* hsl(199, 77%, 24%) */
+  --color-secondary-light:    #26A7E3; /* hsl(199, 77%, 52%) */
+  --color-secondary-dark:     #031017; /* hsl(201, 77%,  5%) */
+
+  /* ── Brand / Accent ──────────────────────────────────────────────────────── */
+  --color-accent-base:        #F4614A; /* hsl(  8, 89%, 62%) */
+  --color-accent-light:       #FCD5CF; /* hsl(  8, 88%, 90%) */
+  --color-accent-dark:        #C1230B; /* hsl(  8, 89%, 40%) */
+
+  /* ── Brand / Neutral ─────────────────────────────────────────────────────── */
+  --color-neutral-base:       #4A6068; /* hsl(196, 17%, 35%) */
+  --color-neutral-light:      #9DB2B9; /* hsl(195, 17%, 67%) */
+  --color-neutral-dark:       #0F1315; /* hsl(200, 17%,  7%) */
+
+  /* ── Brand / Surface ─────────────────────────────────────────────────────── */
+  --color-surface-base:       #F2F5F5; /* hsl(180, 13%, 95%) */
+  --color-surface-dark:       #0D1A1F; /* hsl(197, 41%,  9%) */
+
+  /* ── Text ────────────────────────────────────────────────────────────────── */
+  --color-text-primary:       #0D1A1F; /* hsl(197, 41%,  9%) */
+  --color-text-secondary:     #2C4A54; /* hsl(195, 31%, 25%) */
+  --color-text-muted:         #4A6068; /* hsl(196, 17%, 35%) */
+  --color-text-disabled:      #9DB2B9; /* hsl(195, 17%, 67%) */
+  --color-text-link:          #1A7A6E; /* hsl(172, 65%, 29%) */
+  --color-text-link-hover:    #0E4D6B; /* hsl(199, 77%, 24%) */
+  --color-text-inverse:       #F2F5F5; /* hsl(180, 13%, 95%) */
+
+}

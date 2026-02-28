@@ -3,26 +3,488 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NCDesign</title>
+  <title>Nathan Crowther — UX Portfolio</title>
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/typography.css">
   <style>
+
+    /* ── Reset & Base ─────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+
     body {
       margin: 0;
+      background-color: var(--color-surface-dark);
+      color: var(--color-text-inverse);
+    }
+
+    blockquote {
+      margin: 0;
+    }
+
+    /* ── Layout ───────────────────────────────────────────────────────────────── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    .section-heading {
+      margin: 0 0 2.5rem;
+      color: var(--color-text-inverse);
+    }
+
+    /* ── Nav ──────────────────────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--color-surface-dark);
+      border-bottom: 1px solid rgba(74, 96, 104, 0.2);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.25rem 2rem;
       display: flex;
       align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      background: #0a0a0a;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      justify-content: space-between;
     }
-    h1 {
-      color: #ffffff;
-      font-size: 2rem;
-      font-weight: 500;
-      letter-spacing: -0.02em;
+
+    .nav-logo {
+      color: var(--color-text-inverse);
+      text-decoration: none;
     }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: var(--color-neutral-light);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-text-inverse);
+    }
+
+    /* ── Hero ─────────────────────────────────────────────────────────────────── */
+    .hero {
+      padding: 6rem 0 5rem;
+    }
+
+    .hero-inner {
+      display: grid;
+      gap: 4rem;
+    }
+
+    @media (min-width: 768px) {
+      .hero-inner {
+        grid-template-columns: 3fr 2fr;
+        align-items: center;
+        gap: 5rem;
+      }
+    }
+
+    .hero-intro p {
+      margin: 0 0 2rem;
+      color: var(--color-text-inverse);
+    }
+
+    .cta-link {
+      display: inline-flex;
+      align-items: center;
+      color: var(--color-primary-light);
+      text-decoration: none;
+      border-bottom: 1px solid var(--color-primary-light);
+      padding-bottom: 0.1em;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .cta-link:hover {
+      color: var(--color-primary-base);
+      border-color: var(--color-primary-base);
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem 1.5rem;
+    }
+
+    .metric-value {
+      color: var(--color-primary-light);
+      margin: 0 0 0.3rem;
+      line-height: 1;
+    }
+
+    .metric-label {
+      color: var(--color-neutral-light);
+      margin: 0;
+    }
+
+    /* ── Profile Frame ────────────────────────────────────────────────────────── */
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .profile-frame {
+      position: relative;
+      width: 280px;
+      height: 360px;
+      flex-shrink: 0;
+    }
+
+    .hex-bg {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      overflow: visible;
+      filter: drop-shadow(0 0 20px rgba(74, 217, 198, 0.15));
+    }
+
+    .hex-polygon {
+      fill: var(--color-primary-dark);
+      stroke: var(--color-primary-light);
+      stroke-width: 2;
+    }
+
+    .profile-img {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 240px;
+      height: auto;
+      z-index: 1;
+      /* Full width top → clips to hex polygon below 68% height.
+         Percentages derived from the SVG hex geometry + actual image aspect ratio (1979×2502). */
+      clip-path: polygon(
+        0%    0%,
+        100%  0%,
+        100%  68%,
+        79.2% 100%,
+        20.8% 100%,
+        0%    68%
+      );
+    }
+
+    /* ── Trusted By ───────────────────────────────────────────────────────────── */
+    .trusted-by {
+      padding: 2.5rem 0;
+      border-top: 1px solid rgba(74, 96, 104, 0.2);
+      border-bottom: 1px solid rgba(74, 96, 104, 0.2);
+      text-align: center;
+    }
+
+    .trusted-by .eyebrow {
+      color: var(--color-neutral-light);
+      margin: 0 0 0.75rem;
+    }
+
+    .trusted-by .companies {
+      color: var(--color-text-disabled);
+      margin: 0;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── Cards (shared) ───────────────────────────────────────────────────────── */
+    .card {
+      background-color: var(--color-neutral-dark);
+      border: 1px solid rgba(74, 96, 104, 0.2);
+      border-radius: 8px;
+      padding: 2rem;
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ── Strengths ────────────────────────────────────────────────────────────── */
+    .strength-title {
+      color: var(--color-text-inverse);
+      margin: 0 0 0.75rem;
+    }
+
+    .strength-body {
+      color: var(--color-neutral-light);
+      margin: 0 0 1.5rem;
+    }
+
+    .proof-label {
+      color: var(--color-primary-light);
+      margin: 0 0 0.4rem;
+    }
+
+    .proof-text {
+      color: var(--color-neutral-light);
+      margin: 0;
+    }
+
+    /* ── Also Fluent In ───────────────────────────────────────────────────────── */
+    .fluent-grid {
+      display: grid;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .fluent-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .fluent-title {
+      color: var(--color-text-inverse);
+      margin: 0 0 0.5rem;
+    }
+
+    .fluent-body {
+      color: var(--color-neutral-light);
+      margin: 0;
+    }
+
+    .tools-row {
+      color: var(--color-neutral-light);
+      margin: 0;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(74, 96, 104, 0.2);
+    }
+
+    .tools-row strong {
+      color: var(--color-text-inverse);
+      font-weight: var(--weight-medium);
+    }
+
+    /* ── Testimonials ─────────────────────────────────────────────────────────── */
+    .testimonial-quote {
+      color: var(--color-text-inverse);
+      margin: 0 0 1.5rem;
+    }
+
+    .testimonial-name {
+      color: var(--color-text-inverse);
+      margin: 0 0 0.2rem;
+    }
+
+    .testimonial-role {
+      color: var(--color-neutral-light);
+      margin: 0;
+    }
+
+    /* ── Footer ───────────────────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid rgba(74, 96, 104, 0.2);
+      padding: 2rem 0;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-copy {
+      color: var(--color-neutral-light);
+      margin: 0;
+    }
+
+    .footer-contact {
+      color: var(--color-primary-light);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .footer-contact:hover {
+      color: var(--color-primary-base);
+    }
+
   </style>
 </head>
 <body>
-  <h1>Hello, world.</h1>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo type-label">Nathan Crowther</a>
+      <ul class="nav-links">
+        <li><a href="#" class="type-label">Work</a></li>
+        <li><a href="#" class="type-label">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- Hero -->
+    <header class="hero">
+      <div class="container">
+        <div class="hero-inner">
+          <div class="hero-intro">
+            <p class="type-lead">I'm a structural design leader with 8+ years designing enterprise products at Walmart and Lowe's — the kind that supply chain teams, store associates, and data analysts actually rely on. I specialize in finding the structural problem underneath the surface request, then building systems that scale beyond any single project. Actively seeking Lead and Principal UX Designer roles.</p>
+            <a href="#" class="type-label cta-link">See the work →</a>
+          </div>
+          <div class="hero-right">
+            <div class="profile-frame">
+              <!-- Flat-top hexagon: top ~1/3 of head clears the frame edge -->
+              <svg class="hex-bg" viewBox="0 0 280 265" width="280" height="265" xmlns="http://www.w3.org/2000/svg">
+                <polygon class="hex-polygon" points="70,1 210,1 279,133 210,264 70,264 1,133"/>
+              </svg>
+              <img src="images/profile.png" alt="Nathan Crowther" class="profile-img">
+            </div>
+            <div class="metrics">
+              <div class="metric">
+                <p class="type-h1 metric-value">$3M+</p>
+                <p class="type-overline metric-label">Documented savings</p>
+              </div>
+              <div class="metric">
+                <p class="type-h1 metric-value">135%</p>
+                <p class="type-overline metric-label">NPS improvement</p>
+              </div>
+              <div class="metric">
+                <p class="type-h1 metric-value">120K</p>
+                <p class="type-overline metric-label">Supervisor hours saved annually</p>
+              </div>
+              <div class="metric">
+                <p class="type-h1 metric-value">2.1M</p>
+                <p class="type-overline metric-label">Associates impacted</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Trusted By -->
+    <section class="trusted-by">
+      <div class="container">
+        <p class="type-overline eyebrow">Trusted By</p>
+        <p class="type-body-sm companies">Walmart &nbsp;·&nbsp; Lowe's &nbsp;·&nbsp; Movista</p>
+      </div>
+    </section>
+
+    <!-- Strengths -->
+    <section>
+      <div class="container">
+        <h2 class="type-h2 section-heading">Strengths</h2>
+        <div class="card-grid">
+
+          <div class="card">
+            <h3 class="type-h3 strength-title">Problem Reframing</h3>
+            <p class="type-body strength-body">The brief is usually solving the wrong problem. I slow teams down long enough to find the right one — then we move fast, with confidence.</p>
+            <p class="type-overline proof-label">Proof</p>
+            <p class="type-body-sm proof-text">When asked to improve one page, I rebuilt the information system underneath it. That decision halved engineering time for every supply chain page that followed.</p>
+          </div>
+
+          <div class="card">
+            <h3 class="type-h3 strength-title">Structural Information Architecture</h3>
+            <p class="type-body strength-body">I model the system before designing the screen. Clarity at the structural level produces interfaces that don't require explanation.</p>
+            <p class="type-overline proof-label">Proof</p>
+            <p class="type-body-sm proof-text">Consolidated 200+ disconnected reports into 6 unified experiences. $2M in annual savings. DC supervisors got hours back they didn't know they'd lost.</p>
+          </div>
+
+          <div class="card">
+            <h3 class="type-h3 strength-title">Work That Outlasts the Project</h3>
+            <p class="type-body strength-body">The patterns I build tend to get picked up by other teams. The frameworks I define tend to change how product and engineering scope future work. I'm not just designing for this sprint — I'm designing for the next six.</p>
+            <p class="type-overline proof-label">Proof</p>
+            <p class="type-body-sm proof-text">The Supply Chain Scorecard template system was adopted across multiple teams at Lowe's and became the standard starting point for analytics product design.</p>
+          </div>
+
+          <div class="card">
+            <h3 class="type-h3 strength-title">Helping People Do Better Work</h3>
+            <p class="type-body strength-body">I care a lot about the people I work with. In practice that looks like sitting with a junior designer to help them frame a problem differently, running a design review in a way that changes how the team gives feedback, or helping a PM see a structural issue before it becomes an engineering problem.</p>
+            <p class="type-overline proof-label">Proof</p>
+            <p class="type-body-sm proof-text">"His mentorship has been incredibly valuable in my transition from associate to mid-level designer." — Sanjana Pandya, UX Designer, Lowe's</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Also Fluent In -->
+    <section>
+      <div class="container">
+        <h2 class="type-h2 section-heading">Also Fluent In</h2>
+        <div class="fluent-grid">
+          <div>
+            <h3 class="type-h4 fluent-title">Design Systems</h3>
+            <p class="type-body fluent-body">Built and maintained enterprise-scale systems at Walmart, Movista, and Lowe's. Components that cut a two-month project to two weeks.</p>
+          </div>
+          <div>
+            <h3 class="type-h4 fluent-title">AI-Integrated Workflows</h3>
+            <p class="type-body fluent-body">Built a custom GPT intake tool that replaced incomplete Jira tickets and cut UX kickoff time by ~50%. Use AI actively as a thinking partner throughout discovery, not just for output.</p>
+          </div>
+        </div>
+        <p class="type-body-sm tools-row"><strong>Tools:</strong> Figma &nbsp;·&nbsp; Figma Make &nbsp;·&nbsp; Looker Studio Pro &nbsp;·&nbsp; FigJam &nbsp;·&nbsp; HTML/CSS</p>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section>
+      <div class="container">
+        <h2 class="type-h2 section-heading">Testimonials</h2>
+        <div class="card-grid">
+
+          <div class="card">
+            <blockquote class="type-quote testimonial-quote">"He has a rare ability to bring clarity and structure to complex experience challenges, particularly within data analytics and data governance spaces."</blockquote>
+            <p class="type-label testimonial-name">Amy Offenberger</p>
+            <p class="type-body-sm testimonial-role">Product Manager, Lowe's</p>
+          </div>
+
+          <div class="card">
+            <blockquote class="type-quote testimonial-quote">"He taught me so much about ensuring you have the right design architecture in place before even making a visual design 'pretty.'"</blockquote>
+            <p class="type-label testimonial-name">Chelsei White</p>
+            <p class="type-body-sm testimonial-role">Principal Product Manager, Walmart</p>
+          </div>
+
+          <div class="card">
+            <blockquote class="type-quote testimonial-quote">"Rock solid systems thinker with tremendous trajectory."</blockquote>
+            <p class="type-label testimonial-name">Rick Rodriguez</p>
+            <p class="type-body-sm testimonial-role">Design Systems Lead, Meta</p>
+          </div>
+
+          <div class="card">
+            <blockquote class="type-quote testimonial-quote">"He has helped me build the skills to approach problems more thoughtfully — asking the right questions, mapping out complex systems, and thoroughly exploring the problem space before jumping to solutions."</blockquote>
+            <p class="type-label testimonial-name">Sanjana Pandya</p>
+            <p class="type-body-sm testimonial-role">UX Designer, Lowe's</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p class="type-body-sm footer-copy">© 2026 Nathan Crowther</p>
+      <a href="#" class="type-label footer-contact">Get in touch</a>
+    </div>
+  </footer>
+
 </body>
 </html>

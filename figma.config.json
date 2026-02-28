@@ -1,0 +1,7 @@
+{
+  "figmaFile": "https://www.figma.com/design/Cb9UIoyd5e5XnX1hMZhzfW/NCDesign-Brand-(2022)",
+  "fileKey": "Cb9UIoyd5e5XnX1hMZhzfW",
+  "codeConnect": {
+    "include": ["**/*.html", "**/*.css", "**/*.js"]
+  }
+}

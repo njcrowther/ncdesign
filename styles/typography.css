@@ -1,0 +1,198 @@
+/* =============================================================================
+   NCDesign — Typography Tokens & Styles
+   Source of truth: https://www.figma.com/design/Cb9UIoyd5e5XnX1hMZhzfW
+   ============================================================================= */
+
+/* Google Fonts — Rubik (all styles) */
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
+
+/* =============================================================================
+   Primitive Tokens
+   ============================================================================= */
+
+:root {
+
+  /* ── Font Families ───────────────────────────────────────────────────────── */
+  --font-display: 'Rubik', sans-serif;
+  --font-sans:    'Rubik', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    'SF Mono', 'Fira Code', 'Fira Mono', monospace;
+
+  /* ── Size Scale ──────────────────────────────────────────────────────────── */
+  --text-2xs:  0.6875rem; /*  11px */
+  --text-xs:   0.75rem;   /*  12px */
+  --text-sm:   0.875rem;  /*  14px */
+  --text-base: 1rem;      /*  16px */
+  --text-lg:   1.25rem;   /*  20px */
+  --text-xl:   1.375rem;  /*  22px */
+  --text-2xl:  1.75rem;   /*  28px */
+  --text-3xl:  2.25rem;   /*  36px */
+  --text-4xl:  3rem;      /*  48px */
+  --text-5xl:  4.5rem;    /*  72px */
+
+  /* ── Font Weights ────────────────────────────────────────────────────────── */
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  /* ── Line Heights ────────────────────────────────────────────────────────── */
+  --leading-tighter:  1.1;
+  --leading-tight:    1.2;
+  --leading-snug:     1.25;
+  --leading-normal:   1.5;
+  --leading-relaxed:  1.6;
+
+  /* ── Letter Spacing ──────────────────────────────────────────────────────── */
+  --tracking-tightest: -0.03em;
+  --tracking-tighter:  -0.02em;
+  --tracking-tight:    -0.01em;
+  --tracking-normal:    0em;
+  --tracking-wide:      0.02em;
+  --tracking-wider:     0.05em;
+  --tracking-widest:    0.12em;
+
+}
+
+/* =============================================================================
+   Semantic Text Style Classes
+   ============================================================================= */
+
+/* Display — Hero, splash screens */
+.type-display {
+  font-family:    var(--font-display);
+  font-size:      var(--text-5xl);      /* 72px */
+  font-weight:    var(--weight-bold);
+  line-height:    var(--leading-tighter);
+  letter-spacing: var(--tracking-tightest);
+}
+
+/* H1 — Page titles */
+.type-h1 {
+  font-family:    var(--font-display);
+  font-size:      var(--text-4xl);      /* 48px */
+  font-weight:    var(--weight-bold);
+  line-height:    1.15;
+  letter-spacing: var(--tracking-tighter);
+}
+
+/* H2 — Section headers */
+.type-h2 {
+  font-family:    var(--font-display);
+  font-size:      var(--text-3xl);      /* 36px */
+  font-weight:    var(--weight-semibold);
+  line-height:    var(--leading-tight);
+  letter-spacing: var(--tracking-tighter);
+}
+
+/* H3 — Sub-section headers */
+.type-h3 {
+  font-family:    var(--font-sans);
+  font-size:      var(--text-2xl);      /* 28px */
+  font-weight:    var(--weight-semibold);
+  line-height:    var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+}
+
+/* H4 — Card titles, grouped labels */
+.type-h4 {
+  font-family:    var(--font-sans);
+  font-size:      var(--text-xl);       /* 22px */
+  font-weight:    var(--weight-semibold);
+  line-height:    1.3;
+  letter-spacing: var(--tracking-normal);
+}
+
+/* Lead — Intro / lede paragraphs */
+.type-lead {
+  font-family:    var(--font-sans);
+  font-size:      var(--text-lg);       /* 20px */
+  font-weight:    var(--weight-regular);
+  line-height:    var(--leading-relaxed);
+  letter-spacing: var(--tracking-normal);
+}
+
+/* Body — Default body copy */
+.type-body {
+  font-family:    var(--font-sans);
+  font-size:      var(--text-base);     /* 16px */
+  font-weight:    var(--weight-regular);
+  line-height:    var(--leading-relaxed);
+  letter-spacing: var(--tracking-normal);
+}
+
+/* Body Small — Secondary body copy */
+.type-body-sm {
+  font-family:    var(--font-sans);
+  font-size:      var(--text-sm);       /* 14px */
+  font-weight:    var(--weight-regular);
+  line-height:    var(--leading-relaxed);
+  letter-spacing: var(--tracking-normal);
+}
+
+/* Label — UI labels, nav items */
+.type-label {
+  font-family:    var(--font-sans);
+  font-size:      var(--text-sm);       /* 14px */
+  font-weight:    var(--weight-medium);
+  line-height:    1.4;
+  letter-spacing: var(--tracking-wide);
+}
+
+/* Label Small — Tags, chips, meta */
+.type-label-sm {
+  font-family:    var(--font-sans);
+  font-size:      var(--text-xs);       /* 12px */
+  font-weight:    var(--weight-medium);
+  line-height:    1.4;
+  letter-spacing: var(--tracking-wide);
+}
+
+/* Overline — Eyebrow text above headings */
+.type-overline {
+  font-family:    var(--font-sans);
+  font-size:      var(--text-2xs);      /* 11px */
+  font-weight:    var(--weight-bold);
+  line-height:    var(--leading-tight);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+}
+
+/* Caption — Image captions, footnotes */
+.type-caption {
+  font-family:    var(--font-sans);
+  font-size:      var(--text-xs);       /* 12px */
+  font-weight:    var(--weight-regular);
+  line-height:    var(--leading-normal);
+  letter-spacing: var(--tracking-normal);
+}
+
+/* Quote — Blockquotes, pull quotes */
+.type-quote {
+  font-family:    var(--font-display);
+  font-size:      var(--text-xl);       /* 22px */
+  font-weight:    var(--weight-light);
+  font-style:     italic;
+  line-height:    var(--leading-normal);
+  letter-spacing: var(--tracking-normal);
+}
+
+/* Code — Inline and block code */
+.type-code {
+  font-family:    var(--font-mono);
+  font-size:      var(--text-sm);       /* 14px */
+  font-weight:    var(--weight-regular);
+  line-height:    var(--leading-relaxed);
+  letter-spacing: var(--tracking-normal);
+}
+
+/* Link — Anchor text */
+.type-link {
+  color:           var(--color-text-link);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  transition:      color 0.15s ease;
+}
+.type-link:hover {
+  color: var(--color-text-link-hover);
+}
